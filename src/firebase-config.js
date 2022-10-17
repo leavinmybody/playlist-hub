@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -14,3 +15,30 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
+export const firestore = getFirestore(app);
+
+// A function that will create a new user in the database
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+    if (!userAuth) return;
+
+    const userRef = doc(firestore, "users", userAuth.uid);
+    const snapShot = await getDoc(userRef);
+
+    if (!snapShot.exists()) {
+        const { username, email } = userAuth;
+        const createdAt = new Date();
+
+        try {
+            await setDoc(userRef, {
+                username,
+                email,
+                createdAt,
+                ...additionalData,
+            });
+        } catch (error) {
+            console.log("error creating user", error.message);
+        }
+    }
+
+    return userRef;
+};

@@ -2,29 +2,34 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import bgImg from "../assets/bg.jpg";
-import { auth } from "../firebase-config";
+import { auth, createUserProfileDocument } from "../firebase-config";
 const RegisterForm = () => {
+    const navigate = useNavigate();
     const { register, handleSubmit, errors } = useForm();
 
     const onSubmit = async (data) => {
         console.log(data);
-        // Use createUserWithEmailAndPassword to create a new user with email and password in Firebase then update the user profile with username and photoURL
         const userCredential = await createUserWithEmailAndPassword(
             auth,
             data.email,
             data.password
-        )
+        );
+        await createUserProfileDocument(userCredential.user, {
+            username: data.username,
+        })
             .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user;
-                // ...
+                // redirect to home page
+                navigate("/");
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                // ..
+
+                console.log(errorCode, errorMessage);
             });
     };
 
