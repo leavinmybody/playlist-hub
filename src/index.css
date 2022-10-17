@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        font-family: "Poppins", cursive;
+    }
+
+    body {
+        background-color: #f2f0f6;
+    }
+
+    .register-page {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .register .col-1 {
+        margin: auto;
+        padding: 3em 0;
+    }
+
+    .register .col-2 img {
+        width: 480px;
+        height: 100%;
+        object-fit: cover;
+        align-self: flex-end;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        /* display: none; */
+    }
+
+    .brighten img {
+        -webkit-filter: brightness(100%);
+        -webkit-transition: all 1s ease;
+        -moz-transition: all 1s ease;
+        -o-transition: all 1s ease;
+        -ms-transition: all 1s ease;
+        transition: all 1s ease;
+    }
+
+    .brighten img:hover {
+        -webkit-filter: brightness(50%);
+    }
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+    .register .col-2 img {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .register .col-1 {
+        margin: auto;
+        padding: 3em 0;
+    }
+}
