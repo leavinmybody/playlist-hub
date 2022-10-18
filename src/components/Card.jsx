@@ -10,9 +10,9 @@ const Card = () => {
                 className="w-full h-32 sm:h-48 object-cover"
             />
             <div className="m-4">
-                <span className="font-bold">Gold School</span>
+                <span className="font-bold text-secondary">Gold School</span>
                 <span className="block text-gray-500 text-sm">
-                    by <span className="text-green-500">Spotfiy</span>
+                    by <span className="text-secondary">Spotfiy</span>
                 </span>
             </div>
             <div className="badge">
