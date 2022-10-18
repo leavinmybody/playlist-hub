@@ -149,7 +149,7 @@ const Home = () => {
                     </div>
                 </div>
 
-                <div className="btn flex justify-center">
+                <div className="btn flex justify-center mt-4">
                     <div>Load more</div>
                 </div>
             </main>
