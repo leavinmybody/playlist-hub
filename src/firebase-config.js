@@ -17,6 +17,16 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const firestore = getFirestore(app);
 
+export const getUserDocument = async (uid) => {
+    if (!uid) return null;
+    try {
+        const userDocument = await getDoc(doc(firestore, "users", uid));
+        return { uid, ...userDocument.data() };
+    } catch (error) {
+        console.error("Error fetching user", error.message);
+    }
+};
+
 // A function that will create a new user in the database
 export const createUserProfileDocument = async (userAuth, additionalData) => {
     if (!userAuth) return;

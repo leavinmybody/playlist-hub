@@ -13,10 +13,6 @@
     font-family: "Poppins", cursive;
 }
 
-body {
-    background-color: #f2f0f6;
-}
-
 .register-page {
     height: 100vh;
     display: flex;
@@ -61,6 +57,18 @@ body {
     -webkit-filter: brightness(50%);
 }
 
+.card {
+    @apply bg-white rounded overflow-hidden shadow-md relative;
+}
+
+.badge {
+    @apply bg-gray-500 text-white text-xs uppercase rounded-md opacity-80 p-1 absolute top-0 ml-2 mt-2;
+}
+
+.btn {
+    @apply rounded-md py-1 px-1 cursor-pointer tracking-wider;
+}
+
 /* Media queries */
 @media (max-width: 768px) {
     .register .col-2 img {
@@ -72,5 +80,12 @@ body {
     .register .col-1 {
         margin: auto;
         padding: 3em 0;
+    }
+}
+
+@media (min-width: 640px) {
+    .w-fixed {
+        flex: 0 1 230px;
+        min-width: 230px;
     }
 }
